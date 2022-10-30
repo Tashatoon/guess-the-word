@@ -23,3 +23,31 @@ guessLetterbutton.addEventListener("click", function (e) {
     console.log(guess);
     textInput.value = "";
 });
+const guess = textInput.value;
+const goodGuess = validateInput(guess);
+if (goodGuess) {
+    makeGuess(guess);
+}
+textInput.value = "";
+});
+const validateInput = function (input) {
+    const acceptedLetter =  /[a-zA-Z]/;
+    if (input.length ===0) {
+        messages.innerText = "Please enter a single letter.";
+    } else if (input.length > 1) {
+        messages.innerText = "Please enter a leter from ! to Z";
+    } else {
+        return input;
+    }
+};
+const makeGuess = function (guess) {
+    guess = guess.toUpperCase();
+    if (guessedLetters.includes(guess)) {
+        messages.innerText = "You already guessed that letter, silly, try again";
+    } else {
+        guessedLetters.push(guess);
+        console.log(guessedLetters);
+    }
+};
+
+
